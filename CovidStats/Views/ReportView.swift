@@ -26,6 +26,12 @@ struct ReportView: View {
                 Text(report.region.province)
                     .foregroundColor(.white)
                     .font(.title)
+                Text(String(report.region.lat ?? "N/A"))
+                    .foregroundColor(.white)
+                    .font(.title)
+                Text(String(report.region.long ?? "N/A"))
+                    .foregroundColor(.white)
+                    .font(.title)
                 
                 Spacer()
                 VStack(alignment: .leading , spacing: 15) {

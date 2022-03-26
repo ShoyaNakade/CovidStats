@@ -12,64 +12,79 @@ struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
     
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .top) {
-                LinearGradient(colors: [
-                    Color(red: 0.76, green: 0.15, blue: 0.26),
-                    Color(red: 0.01, green: 0.23, blue: 0.5)
-                ], startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .ignoresSafeArea()
-                
-                VStack(alignment: .leading) {
-                    Text("世界の総数")
-                        .font(.title2.bold())
-                        .foregroundColor(.white)
-                        .padding(10)
+        TabView {
+            NavigationView {
+                ZStack(alignment: .top) {
+                    LinearGradient(colors: [
+                        Color(red: 0.76, green: 0.15, blue: 0.26),
+                        Color(red: 0.01, green: 0.23, blue: 0.5)
+                    ], startPoint: .topLeading, endPoint: .bottomTrailing)
+                        .ignoresSafeArea()
                     
-                    TotalDataView(totalData: viewModel.totalData)
-                    
-                    if viewModel.isSearchVisible {
-                        SearchBarView(searchText: $viewModel.searchText)
-                    }
-                    
-                    Text("全ての国")
-                        .font(.title2.bold())
-                        .foregroundColor(.white)
-                        .padding(10)
-                    
-                    List {
-                        Section {
-                            ForEach(viewModel.allCountries.filter{
-                                viewModel.searchText.isEmpty ? true : $0.name.lowercased().contains(viewModel.searchText.lowercased())
-                            }, id: \.iso) { country in
-                                NavigationLink {
-                                    CountryDetailView(viewModel: CountryDetailViewModel(country: country))
-                                } label: {
-                                    Text(country.name)
+                    VStack(alignment: .leading) {
+                        Text("世界の総数")
+                            .font(.title2.bold())
+                            .foregroundColor(.white)
+                            .padding(10)
+                        
+                        TotalDataView(totalData: viewModel.totalData)
+                        
+                        if viewModel.isSearchVisible {
+                            SearchBarView(searchText: $viewModel.searchText)
+                        }
+                        
+                        Text("全ての国")
+                            .font(.title2.bold())
+                            .foregroundColor(.white)
+                            .padding(10)
+                        
+                        List {
+                            Section {
+                                ForEach(viewModel.allCountries.filter{
+                                    viewModel.searchText.isEmpty ? true : $0.name.lowercased().contains(viewModel.searchText.lowercased())
+                                }, id: \.iso) { country in
+                                    NavigationLink {
+                                        CountryDetailView(viewModel: CountryDetailViewModel(country: country))
+                                        
+                                    } label: {
+                                        Text(country.name)
+                                    }
                                 }
                             }
                         }
+                        .listStyle(.plain)
                     }
-                    .listStyle(.plain)
                 }
-            }
-            .navigationTitle("Covid-19の統計")
-            .alert(item: $viewModel.alertItem, content: { alertItem in
-                Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-            })
-            .toolbar {
-                Button {
-                    viewModel.isSearchVisible.toggle()
-                    if !viewModel.isSearchVisible {
-                        viewModel.searchText = "" // reset text
+                .navigationTitle("Covid-19の統計")
+                .alert(item: $viewModel.alertItem, content: { alertItem in
+                    Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+                })
+                .toolbar {
+                    Button {
+                        viewModel.isSearchVisible.toggle()
+                        if !viewModel.isSearchVisible {
+                            viewModel.searchText = "" // reset text
+                        }
+                    } label: {
+                        Image(systemName: "magnifyingglass")
+                        
                     }
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                    
+                    .tint(.white)
                 }
-                .tint(.white)
+                .accentColor(.primary)
             }
-            .accentColor(.primary)
+            .tabItem {
+                Image(systemName: "chart.bar")
+                Text("統計")
+            }
+            .tag(0)
+            
+            MapContaineriew()
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("地図")
+                }
+                .tag(1)
         }
     }
 }
