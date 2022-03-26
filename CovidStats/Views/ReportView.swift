@@ -36,9 +36,10 @@ struct ReportView: View {
                 Spacer()
                 VStack(alignment: .leading , spacing: 15) {
                     Text("日時: \(report.formattedData)")
-                    Text("感染者数: \(report.confirmed.roundedWidthAbbreviations)")
-                    Text("アクティブ: \(report.active.roundedWidthAbbreviations)")
-                    Text("死亡者: \(report.deaths.roundedWidthAbbreviations)")
+                    Text("総感染者数: \(report.confirmed.roundedWidthAbbreviations)")
+                    Text("総死亡者: \(report.deaths.roundedWidthAbbreviations)")
+                    Text("今日の感染者数: \(report.confirmed_diff?.roundedWidthAbbreviations ?? "N/A")")
+                    Text("今日の死亡者数: \(report.deaths_diff?.roundedWidthAbbreviations ?? "N/A")")
                     Text("致死率: \(report.fatality_rate.formatted())%")
                 }
                 .font(.title2)

@@ -16,6 +16,8 @@ struct RegionReport: Codable, Identifiable {
     let date: Date
     let confirmed: Int
     let deaths: Int
+    let confirmed_diff: Int?
+    let deaths_diff: Int?
     let active: Int
     let fatality_rate: Double
     let region: RegionDetail
@@ -24,7 +26,7 @@ struct RegionReport: Codable, Identifiable {
         date.formatted(date: .abbreviated, time: .omitted)
     }
     
-    static let dummyData = RegionReport(date: Date.now, confirmed: 0, deaths: 0, active: 0, fatality_rate: 0.0, region: RegionDetail(iso: "",lat: "",long: "", name: "N/A", province: ""))
+    static let dummyData = RegionReport(date: Date.now, confirmed: 0, deaths: 0, confirmed_diff: 0, deaths_diff: 0, active: 0, fatality_rate: 0.0, region: RegionDetail(iso: "",lat: "",long: "", name: "N/A", province: ""))
     
 }
 

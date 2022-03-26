@@ -20,9 +20,9 @@ struct  MapView: UIViewRepresentable {
         print("DEBUG: \(_regionData.wrappedValue)")
         for data in regionData {
             
-            let title = data.region.province + "\n Confirmed" +
-            data.confirmed.formatNumber + "\n Death"  +
-            data.deaths.formatNumber
+            let title = data.region.province + "\n 感染者数" +
+            (data.confirmed_diff?.formatNumber ?? "N/A") + "\n 死亡数"  +
+            (data.deaths_diff?.formatNumber ?? "N/A")
             
             let coordinate = CLLocationCoordinate2D(latitude: Double(data.region.lat ?? "0") ?? 0, longitude:  Double(data.region.long ?? "0") ?? 0)
             

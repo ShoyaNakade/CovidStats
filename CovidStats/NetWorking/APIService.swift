@@ -17,7 +17,7 @@ final class APIService {
     
     private let headers = [
         "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com",
-        "X-RapidAPI-Key": "eda6f3892emsh2d191f757d6c379p1e4dd5jsn14e1a892529f"
+        "X-RapidAPI-Key": "eda6f3892emsh2d191f757d6c379p1e4dd5jsn14e1a892529f" //This is free Key by NakadeShoya
     ]
     
     private let baseURLString = "https://covid-19-statistics.p.rapidapi.com"
