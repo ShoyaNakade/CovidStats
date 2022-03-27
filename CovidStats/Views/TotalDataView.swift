@@ -14,11 +14,12 @@ struct TotalDataView: View {
         
         VStack {
             HStack {
-                DataCardView(number: totalData.confirmed.formatNumber, name: "感染者数", color: .red)
-                DataCardView(number: totalData.active.formatNumber, name: "アクティブ", color: .green)
+                DataCardView(number: totalData.confirmed.formatNumber, name: "総感染者数", color: .accentColor)
+                DataCardView(number: totalData.confirmed_diff.formatNumber, name: "1日の感染者数", color: .accentColor)
+//                DataCardView(number: totalData.active.formatNumber, name: "アクティブ", color: .green)
             }
             HStack {
-                DataCardView(number: totalData.deaths.formatNumber, name: "死亡数", color: .red)
+                DataCardView(number: totalData.deaths_diff.formatNumber, name: "死亡数", color: .red)
                 DataCardView(number: String(format: "%.2f", totalData.fatality_rate)
                 , name: "死亡率 %"
                 , color: .red)

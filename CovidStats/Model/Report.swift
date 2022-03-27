@@ -23,7 +23,7 @@ struct RegionReport: Codable, Identifiable {
     let region: RegionDetail
     
     var formattedData: String {
-        date.formatted(date: .abbreviated, time: .omitted)
+        date.formatted(date: .abbreviated, time: .omitted) // 省略表示かつ、時間を削除
     }
     
     static let dummyData = RegionReport(date: Date.now, confirmed: 0, deaths: 0, confirmed_diff: 0, deaths_diff: 0, active: 0, fatality_rate: 0.0, region: RegionDetail(iso: "",lat: "",long: "", name: "N/A", province: ""))
@@ -31,11 +31,11 @@ struct RegionReport: Codable, Identifiable {
 }
 
 struct RegionDetail: Codable {
-//    let lat: Double
-//    let long: Double
+    //    let lat: Double
+    //    let long: Double
     let iso: String
-    let lat: String?
-    let long: String?
+    let lat: String? // N/Aデータが混ざっているため
+    let long: String? // N/Aデータが混ざっているため
     let name: String
     let province: String
     

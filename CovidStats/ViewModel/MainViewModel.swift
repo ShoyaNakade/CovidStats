@@ -23,7 +23,7 @@ final class MainViewModel: ObservableObject {
     
     func fetchTotalData() {
         APIService.shared.fetchTotalData { result in
-            //MARK: - dispatchを使う理由
+            //MARK: - dispatchを使う理由はfetchに時間がかかるから、backで走らせる。
             DispatchQueue.main.async {
                 switch result{
                 case .success(let totalData):

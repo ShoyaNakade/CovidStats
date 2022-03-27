@@ -53,6 +53,7 @@
 		4DCFAEBE27EA8E98000B5BF1 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		4DCFAEC027EA90B3000B5BF1 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
 		4DCFAEC327EA911E000B5BF1 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
+		4DE6B87027EFE5E700FACF50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +87,9 @@
 		4D3BA5F127E9ECEE003F799E /* CovidStats */ = {
 			isa = PBXGroup;
 			children = (
+				4DE6B87027EFE5E700FACF50 /* Info.plist */,
 				4D3BA5F227E9ECEE003F799E /* CovidStatsApp.swift */,
-				4DCFAEC227EA90CE000B5BF1 /* MainView */,
+				4D3BA5F427E9ECEE003F799E /* MainView.swift */,
 				4DCFAEBD27EA8E63000B5BF1 /* Extensions */,
 				4DCFAEB827EA84DC000B5BF1 /* Views */,
 				4DCFAEB527EA8051000B5BF1 /* ViewModel */,
@@ -139,6 +141,7 @@
 		4DCFAEB527EA8051000B5BF1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4DCFAEB327EA801E000B5BF1 /* MainViewModel.swift */,
 				4DCFAEC327EA911E000B5BF1 /* CountryDetailViewModel.swift */,
 			);
 			path = ViewModel;
@@ -164,15 +167,6 @@
 				4DCFAEBB27EA88AF000B5BF1 /* Extension+Int.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		4DCFAEC227EA90CE000B5BF1 /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				4D3BA5F427E9ECEE003F799E /* MainView.swift */,
-				4DCFAEB327EA801E000B5BF1 /* MainViewModel.swift */,
-			);
-			path = MainView;
 			sourceTree = "<group>";
 		};
 		F1274B540165D686406E83DA /* Frameworks */ = {
@@ -402,6 +396,8 @@
 				DEVELOPMENT_TEAM = 254G68X5D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CovidStats/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -431,6 +427,8 @@
 				DEVELOPMENT_TEAM = 254G68X5D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CovidStats/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

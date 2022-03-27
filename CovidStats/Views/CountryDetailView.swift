@@ -37,7 +37,7 @@ struct CountryDetailView: View {
         })
         .onAppear {
             if viewModel.reports.count == 0 {
-                // detail view　の時のみ読み込む
+                // viewmodelが最下層に到達した時のみ読み込む
                 viewModel.fetchReport()
             }
         }

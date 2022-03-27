@@ -14,8 +14,10 @@ struct TotalDataObject: Codable {
 struct TotalData: Codable {
     let confirmed: Int
     let deaths: Int
+    let confirmed_diff: Int
+    let deaths_diff: Int
     let active: Int
     let fatality_rate: Double
     
-    static let dummyData = TotalData(confirmed: 0, deaths: 0, active: 0, fatality_rate: 0)
+    static let dummyData = TotalData(confirmed: 0, deaths: 0, confirmed_diff: 0,deaths_diff: 0, active: 0, fatality_rate: 0)
 }

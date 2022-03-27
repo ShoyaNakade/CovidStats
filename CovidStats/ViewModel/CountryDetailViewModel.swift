@@ -19,7 +19,6 @@ final class CountryDetailViewModel: ObservableObject {
         iso = country.iso
     }
     
-    
     func fetchReport() {
         APIService.shared.fetchReports(for: iso) { result in
             DispatchQueue.main.async {

@@ -16,8 +16,7 @@ struct  MapView: UIViewRepresentable {
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapView>) {
         
         var allAnnotations: [CoronaCaseAnnotation] = []
-        
-        print("DEBUG: \(_regionData.wrappedValue)")
+//        print("DEBUG: \(_regionData.wrappedValue)")
         for data in regionData {
             
             let title = data.region.province + "\n 感染者数" +
@@ -28,7 +27,6 @@ struct  MapView: UIViewRepresentable {
             
             allAnnotations.append(CoronaCaseAnnotation(title: title, coordinate: coordinate))
         }
-        
         uiView.annotations.forEach{ uiView.removeAnnotation($0) } // reset
         uiView.addAnnotations(allAnnotations)
     }

@@ -13,7 +13,6 @@ struct AlertItem: Identifiable {
     let title: Text
     let message: Text
     let dismissButton: Alert.Button
-    
 }
 
 struct AlertContext {

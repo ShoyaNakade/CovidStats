@@ -10,22 +10,15 @@ import Foundation
 final class APIService {
     
     static let shared = APIService()
-    
-    private init () {
-        
-    }
-    
+    private let baseURLString = "https://covid-19-statistics.p.rapidapi.com"
     private let headers = [
         "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com",
         "X-RapidAPI-Key": "eda6f3892emsh2d191f757d6c379p1e4dd5jsn14e1a892529f" //This is free Key by NakadeShoya
     ]
     
-    private let baseURLString = "https://covid-19-statistics.p.rapidapi.com"
-    
     func fetchTotalData(completion: @escaping ( Result<TotalData, Error>) -> Void) {
-
+        //MARK: - 1.API取得先URLの作成
         let totalURLString = baseURLString + "/reports/total"
-        
         let url = URL(string:  totalURLString)
         
         guard let url = url else {
@@ -33,14 +26,13 @@ final class APIService {
             return
         }
         
+        //MARK: - 2.URLリクエストの作成
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 100.0)
-        
-        request.httpMethod = "GET"
+        request.httpMethod = "GET" // 初期値はGETだが、明示のため。
         request.allHTTPHeaderFields = headers
 
+        //MARK: - 3.TASKの作成
         let session = URLSession.shared
-        
-        
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             
             if (error != nil) {
@@ -60,17 +52,17 @@ final class APIService {
                 
             }
         })
-
-        dataTask.resume()
+        //MARK: - 4.TASKの実行
+        dataTask.resume() //
     }
     
     func fetchAllRegion(completion: @escaping ( Result<[Country], Error>) -> Void) {
         
         let decorder = JSONDecoder()
-        //check if local data is available
+        //MARK: - Local Dataの確認。オフライン時にでも機能する。
         if let data = LocalFileManager.shared.fetchLocalCountries() {
             do {
-                print("returning from local data")
+                print("DEBUG: returning from local data")
                 let allCountries = try decorder.decode(AllRegion.self, from: data)
                 completion(.success(allCountries.data))
             } catch let error {
@@ -80,7 +72,6 @@ final class APIService {
         }
         
         let countriesURLString = baseURLString + "/regions"
-        
         let url = URL(string:  countriesURLString)
         
         guard let url = url else {
@@ -94,10 +85,7 @@ final class APIService {
         request.allHTTPHeaderFields = headers
 
         let session = URLSession.shared
-        
-        
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            
             if (error != nil) {
                 completion(.failure(CovidError.noDataReceived))
             } else {
@@ -105,9 +93,8 @@ final class APIService {
 //                    print(json)
 //                }
                 
-                // save locally
+                // save local
                 LocalFileManager.shared.saveCountriesLocally(countryData: data)
-                
                 do {
                     print("returning from API")
                     let allCountries = try decorder.decode(AllRegion.self, from: data!)
@@ -115,10 +102,8 @@ final class APIService {
                 } catch let error {
                     completion(.failure(error))
                 }
-                
             }
         })
-
         dataTask.resume()
     }
     
@@ -137,15 +122,11 @@ final class APIService {
         }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 100.0)
-        
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
 
         let session = URLSession.shared
-        
-        
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
-            
             if (error != nil) {
                 completion(.failure(CovidError.noDataReceived))
             } else {
@@ -164,7 +145,6 @@ final class APIService {
                 } catch let error {
                     completion(.failure(error))
                 }
-                
             }
         })
 

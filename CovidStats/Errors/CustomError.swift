@@ -8,5 +8,5 @@
 import Foundation
 
 enum CovidError: Error {
-case incorrectURL, noDataReceived
+    case incorrectURL, noDataReceived
 }

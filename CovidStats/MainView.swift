@@ -10,6 +10,15 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var viewModel = MainViewModel()
+    let decorder = JSONDecoder()
+    let formatter = DateFormatter()
+    let today: String
+
+    init() {
+        formatter.dateFormat = "y-MM-dd" // APIに合わせる
+        decorder.dateDecodingStrategy = .formatted(formatter)
+        self.today = formatter.string(from: Date())
+    }
     
     var body: some View {
         TabView {
@@ -22,7 +31,7 @@ struct MainView: View {
                         .ignoresSafeArea()
                     
                     VStack(alignment: .leading) {
-                        Text("世界の総数")
+                        Text("世界の総数:(\(today))")
                             .font(.title2.bold())
                             .foregroundColor(.white)
                             .padding(10)
@@ -86,6 +95,7 @@ struct MainView: View {
                 }
                 .tag(1)
         }
+        .background(Color.white)
     }
 }
 
